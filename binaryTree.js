@@ -7,7 +7,6 @@ class BinarySearchTree {
 	}
 
 	insertNode(val) {
-		// console.log(`insertNode : val = ${val}`);
 		let node = {
 			val: val,
 			left: null,
@@ -15,29 +14,21 @@ class BinarySearchTree {
 		};
 		let currentNode;
 		if(this.root == null) {
-			this.root = node;
-			// console.log(`root = ${this.root.val}`);
-			
+			this.root = node;	
 		} else {
 			currentNode = this.root;
 			while (currentNode) {
-				// console.log(`currentNode = ${currentNode.val}`);
 				if (currentNode.val > val) {
-					// console.log("for left side");
 					if (currentNode.left == null) {
 						currentNode.left = node;
-						// console.log(`currentNode.left = ${currentNode.left.val}`);
 						break;
 					} else { currentNode = currentNode.left}
 				} else if  (currentNode.val < val) {
-					// console.log('for right side');
 					if (currentNode.right == null) {
 						currentNode.right = node;
-						// console.log(`currentNode.right = ${currentNode.right.val}`);
 						break;
 					} else { currentNode = currentNode.right;}
 				} else {//the same value, we will ignore it
-					// console.log('no duplicate value');
 					break;
 				}
 			}
@@ -91,18 +82,15 @@ class BinarySearchTree {
 		}
 	}
 
-
 };
 
 
 
 let bst = new BinarySearchTree()
 for (let i = 0; i < arr.length; i ++ ) {
-	// console.log(arr[i]);
 	bst.insertNode(arr[i]);
 }
 
-// console.log(bst);
 console.log('');
 console.log('');
 console.log(`========= Display Binary Tree in InOrder ======`);
