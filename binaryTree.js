@@ -76,6 +76,21 @@ class BinarySearchTree {
 		}
 	}
 
+	displayPreOrderRecursive() {
+		function preOrderHelper(node){
+			if (node != null) {
+				console.log(`node = ${node.val}`);
+				preOrderHelper(node.left);
+				preOrderHelper(node.right);
+			}
+		}
+		if (this.root == null){
+			console.log(`this is an empty tree`);
+		} else {
+			preOrderHelper(this.root);
+		}
+	}
+
 
 };
 
@@ -88,7 +103,8 @@ for (let i = 0; i < arr.length; i ++ ) {
 }
 
 // console.log(bst);
-
+console.log('');
+console.log('');
 console.log(`========= Display Binary Tree in InOrder ======`);
 bst.displayInOrderRecursive();
 
@@ -96,3 +112,8 @@ console.log('');
 console.log('');
 console.log(`========= Display Binary Tree in PostOrder ======`);
 bst.displayPostOrderRecursive();
+
+console.log('');
+console.log('');
+console.log(`========= Display Binary Tree in PreOrder ======`);
+bst.displayPreOrderRecursive();
