@@ -1,4 +1,5 @@
 let arr = [8,10,12,5,3,6];
+console.log(`array = ${arr}`);
 
 class BinarySearchTree {
 	contructor () {
@@ -6,7 +7,7 @@ class BinarySearchTree {
 	}
 
 	insertNode(val) {
-		console.log(`insertNode : val = ${val}`);
+		// console.log(`insertNode : val = ${val}`);
 		let node = {
 			val: val,
 			left: null,
@@ -15,41 +16,65 @@ class BinarySearchTree {
 		let currentNode;
 		if(this.root == null) {
 			this.root = node;
-			console.log(`root = ${this.root.val}`);
+			// console.log(`root = ${this.root.val}`);
 			
 		} else {
 			currentNode = this.root;
 			while (currentNode) {
-				console.log(`currentNode = ${currentNode.val}`);
+				// console.log(`currentNode = ${currentNode.val}`);
 				if (currentNode.val > val) {
-					console.log("for left side");
-					if (currentNode.left === null) {
+					// console.log("for left side");
+					if (currentNode.left == null) {
 						currentNode.left = node;
+						// console.log(`currentNode.left = ${currentNode.left.val}`);
 						break;
 					} else { currentNode = currentNode.left}
 				} else if  (currentNode.val < val) {
-					console.log('for right side');
-					if (currentNode.right === null) {
+					// console.log('for right side');
+					if (currentNode.right == null) {
 						currentNode.right = node;
+						// console.log(`currentNode.right = ${currentNode.right.val}`);
 						break;
-					} else { currentNode = currentNode.left;}
+					} else { currentNode = currentNode.right;}
 				} else {//the same value, we will ignore it
-					console.log('no duplicate value');
+					// console.log('no duplicate value');
 					break;
 				}
 			}
 		}
 	}
 
-	inorder() {
 
-	}
+	displayInOrderRecursive() {
+		function inOrderHelper(node) {
+			if (node != null) {
+				inOrderHelper(node.left);
+				console.log(`node = ${node.val}`);
+				inOrderHelper(node.right);
+			}
+		}
+		if (this.root == null) {
+			console.log(`empty tree`);
+			return;
+		} else {
+			let currentNode = this.root;
+			inOrderHelper(currentNode);
+		}
+
+	};
+
+
 };
+
+
 
 let bst = new BinarySearchTree()
 for (let i = 0; i < arr.length; i ++ ) {
-	console.log(arr[i]);
+	// console.log(arr[i]);
 	bst.insertNode(arr[i]);
 }
 
-console.log(bst);
+// console.log(bst);
+
+console.log(`========= Display Binary Tree in Inoder ======`);
+bst.displayInOrderRecursive();
