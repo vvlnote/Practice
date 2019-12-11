@@ -105,6 +105,27 @@ class BinarySearchTree {
 		}
 	}
 
+	displayInOrderIterative() {
+		let stack = [];
+		let currentNode = this.root;
+
+
+		while (true) {
+			// console.log(`currentNode = ${currentNode}`);
+			while(currentNode) {
+				stack.push(currentNode);
+				currentNode = currentNode.left;
+			}
+
+			if (stack.length == 0) return;
+
+			currentNode = stack.pop();
+			console.log(`node = ${currentNode.val}`);
+			currentNode = currentNode.right;
+		}
+	}
+
+
 };
 
 
@@ -118,6 +139,13 @@ console.log('');
 console.log('');
 console.log(`========= Display Binary Tree in InOrder ======`);
 bst.displayInOrderRecursive();
+
+
+
+console.log('');
+console.log('');
+console.log(`========= Display Binary Tree in InOrder interatively ======`);
+bst.displayInOrderIterative();
 
 console.log('');
 console.log('');
@@ -134,3 +162,6 @@ console.log('');
 console.log('');
 console.log(`========= Display Binary Tree in PreOrder interatively ======`);
 bst.displayPreOrderIterative();
+
+console.log('');
+console.log('');
