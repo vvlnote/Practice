@@ -82,6 +82,29 @@ class BinarySearchTree {
 		}
 	}
 
+	displayPreOrderIterative() {
+		//this will print out the root first, then left child, and right child
+		// 1. Create an empty Stack
+		// 2. Push the root into Stack
+		// 3. Loop until Stack is empty
+		// 4. Pop the last node and print its value
+		// 5. Push right and left node if they are not null
+		// 6. Repeat from step 4 to 6 again.
+
+		let stack = [];
+		stack.push(this.root);
+		while (stack.length > 0) {
+			let currentNode = stack.pop();
+			console.log(`node = ${currentNode.val}`);
+			if (currentNode.right != null) {
+				stack.push(currentNode.right);
+			}
+			if (currentNode.left != null) {
+				stack.push(currentNode.left);
+			}
+		}
+	}
+
 };
 
 
@@ -105,3 +128,9 @@ console.log('');
 console.log('');
 console.log(`========= Display Binary Tree in PreOrder ======`);
 bst.displayPreOrderRecursive();
+
+
+console.log('');
+console.log('');
+console.log(`========= Display Binary Tree in PreOrder interatively ======`);
+bst.displayPreOrderIterative();
