@@ -108,24 +108,20 @@ class BinarySearchTree {
 	displayInOrderIterative() {
 		let stack = [];
 		let currentNode = this.root;
+		stack.push(currentNode);
+		currentNode = currentNode.left;
 
-
-		while (true) {
-			// console.log(`currentNode = ${currentNode}`);
+		while (stack.length > 0 || currentNode) {
 			while(currentNode) {
 				stack.push(currentNode);
 				currentNode = currentNode.left;
 			}
-
-			if (stack.length == 0) return;
 
 			currentNode = stack.pop();
 			console.log(`node = ${currentNode.val}`);
 			currentNode = currentNode.right;
 		}
 	}
-
-
 };
 
 
