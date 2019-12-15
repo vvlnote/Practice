@@ -122,6 +122,32 @@ class BinarySearchTree {
 			currentNode = currentNode.right;
 		}
 	}
+
+	displayPostOrderIterative() {
+		let stack1 = [];
+		let stack2 = [];
+		stack1.push(this.root);
+
+		console.log(`    ===================Before push into 2nd stack====================`);
+		while(stack1.length > 0) {
+			let currentNode = stack1.pop();
+			console.log(`node = ${currentNode.val}`);
+			stack2.push(currentNode);
+			if (currentNode.left != null){
+				stack1.push(currentNode.left);
+			}
+			if (currentNode.right != null){
+				stack1.push(currentNode.right);
+			}
+			
+		}
+		console.log(`    ==================After push into 2nd stack====================`);
+		while (stack2.length > 0) {
+			console.log(`node = ${stack2.pop().val}`);
+		}
+	}
+
+
 };
 
 
@@ -140,13 +166,8 @@ bst.displayInOrderRecursive();
 
 console.log('');
 console.log('');
-console.log(`========= Display Binary Tree in InOrder interatively ======`);
+console.log(`========= Display Binary Tree in InOrder iteratively ======`);
 bst.displayInOrderIterative();
-
-console.log('');
-console.log('');
-console.log(`========= Display Binary Tree in PostOrder ======`);
-bst.displayPostOrderRecursive();
 
 console.log('');
 console.log('');
@@ -156,8 +177,21 @@ bst.displayPreOrderRecursive();
 
 console.log('');
 console.log('');
-console.log(`========= Display Binary Tree in PreOrder interatively ======`);
+console.log(`========= Display Binary Tree in PreOrder iteratively ======`);
 bst.displayPreOrderIterative();
+
+console.log('');
+console.log('');
+
+
+console.log(`========= Display Binary Tree in PostOrder ======`);
+bst.displayPostOrderRecursive();
+
+console.log('');
+console.log('');
+
+console.log(`========= Display Binary Tree in PostOrder iteratively with 2 stacks ======`);
+bst.displayPostOrderIterative();
 
 console.log('');
 console.log('');
