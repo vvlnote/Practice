@@ -19,3 +19,6 @@ the binary tree is as following:
  
  postOrder => left subtree -> right subtree -> root
  [3, 6, 5, 12, 10, 8]
+
+
+Note: in order to veiw the tree in the right position, please click on Raw, so you can view what the original tree look like.
