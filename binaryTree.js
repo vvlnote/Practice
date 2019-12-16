@@ -147,6 +147,22 @@ class BinarySearchTree {
 		}
 	}
 
+	displayLevelOrderIterative(){
+		let queue = [];
+		queue.push(this.root);
+		while (queue.length > 0) {
+			let currentNode = queue.shift();
+			console.log(`node = ${currentNode.val}`);
+			if (currentNode.left){
+				queue.push(currentNode.left);
+			}
+			if (currentNode.right) {
+				queue.push(currentNode.right);
+			}
+
+		}
+	}
+
 
 };
 
@@ -195,3 +211,6 @@ bst.displayPostOrderIterative();
 
 console.log('');
 console.log('');
+
+console.log(`========= Display Binary Tree in Level Order iteratively ======`);
+bst.displayLevelOrderIterative();
