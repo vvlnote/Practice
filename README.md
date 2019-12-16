@@ -20,5 +20,7 @@ the binary tree is as following:
  postOrder => left subtree -> right subtree -> root
  [3, 6, 5, 12, 10, 8]
 
+ levelOrder => print out nodes on each level starting with level 0 (=root)
+ [8, 5, 10, 3, 6, 12]
 
 Note: in order to veiw the tree in the right position, please click on Raw, so you can view what the original tree look like.
