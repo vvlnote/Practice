@@ -26,36 +26,31 @@ function magicSquare3x3(n, magicSquare) {
 		} else {
 			let nextRow = currentRow - 1;
 			let nextCol = currentCol + 1;
-			console.log(`i = ${i}, nextRow = ${nextRow}, nextCol = ${nextCol}`);
-			if (nextRow >= 0 && nextCol < n) {
-				if (magicSquare[nextRow][nextCol] != 0){
-				//this cell has be occupied
 
-					currentRow += 1;
-					console.log(`cell is occupied, i = ${i}, currentRow = ${currentRow}, currentCol = ${currentCol} `);
-					magicSquare[currentRow][currentCol] = i;
+			if (nextRow >= 0) {
+				if (nextCol < n) {
+					if (magicSquare[nextRow][nextCol] != 0) {
+						//next cell is occupied
+						currentRow += 1;
+					} else {
+						currentRow -= 1;
+						currentCol += 1;
+					}
 				} else {
+					currentCol = 0;
 					currentRow -= 1;
-					currentCol += 1;
-					console.log(`i = ${i}, currentRow = ${currentRow}, currentCol = ${currentCol} `);
-					magicSquare[currentRow][currentCol] = i;
 				}
-			} else if (nextRow < 0 && nextCol == n) {
-				currentRow += 1;
-				console.log(`i = ${i}, currentRow = ${currentRow}, currentCol = ${currentCol} `);
-				magicSquare[currentRow][currentCol] = i;
-			} else if (nextRow < 0 && nextCol < n) {
-				currentRow = n-1;
-				currentCol += 1;
-				console.log(`i = ${i}, currentRow = ${currentRow}, currentCol = ${currentCol}`);
-				magicSquare[currentRow][currentCol] = i;
-			} else if (nextRow >= 0 && nextCol == n){
-				currentRow -= 1;
-				currentCol = 0;
-				console.log(`cell is occupied, i = ${i}, currentRow = ${currentRow}, currentCol = ${currentCol} `);
-				magicSquare[currentRow][currentCol] = i;
+			} else if (nextRow < 0) {
+				if (nextCol < n) {
+					currentRow = n-1;
+					currentCol += 1;
+				} else {
+					currentRow += 1;
+				}
 			}
+			magicSquare[currentRow][currentCol] = i;
 		}
+
 		i += 1;
 	}
 	return magicSquare;
