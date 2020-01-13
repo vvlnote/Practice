@@ -1,12 +1,10 @@
 let n = 3;
 
-//let magicSquare = initializeMatarix(n);
-
 function constructionMagicSquare(n) {
 	let magicSquare = initializeMatrix(n);
 	// if (n % 2 != 0) {
 	// 	if (n == 3) {
-	// 		magicSquare = magicSquare3x3(n, magicSquare)
+ 		magicSquare = magicSquare3x3(n, magicSquare)
 	// 	} else {
 	// 		oddNumberMagicSquare(n, magicSquare);			
 	// 	}
@@ -17,7 +15,50 @@ function constructionMagicSquare(n) {
 }
 
 function magicSquare3x3(n, magicSquare) {
+	let i = 1;
+	let currentRow = 0;
+	let currentCol = 1;
+	while (i <= n*n) {
+		if (i == 1) {
+			//start to create a magicSquare 3x3
+			//this starting number should be placed in the row = 0, column = 1
+			magicSquare[currentRow][currentCol] = 1;
+		} else {
+			let nextRow = currentRow - 1;
+			let nextCol = currentCol + 1;
+			console.log(`i = ${i}, nextRow = ${nextRow}, nextCol = ${nextCol}`);
+			if (nextRow >= 0 && nextCol < n) {
+				if (magicSquare[nextRow][nextCol] != 0){
+				//this cell has be occupied
 
+					currentRow += 1;
+					console.log(`cell is occupied, i = ${i}, currentRow = ${currentRow}, currentCol = ${currentCol} `);
+					magicSquare[currentRow][currentCol] = i;
+				} else {
+					currentRow -= 1;
+					currentCol += 1;
+					console.log(`i = ${i}, currentRow = ${currentRow}, currentCol = ${currentCol} `);
+					magicSquare[currentRow][currentCol] = i;
+				}
+			} else if (nextRow < 0 && nextCol == n) {
+				currentRow += 1;
+				console.log(`i = ${i}, currentRow = ${currentRow}, currentCol = ${currentCol} `);
+				magicSquare[currentRow][currentCol] = i;
+			} else if (nextRow < 0 && nextCol < n) {
+				currentRow = n-1;
+				currentCol += 1;
+				console.log(`i = ${i}, currentRow = ${currentRow}, currentCol = ${currentCol}`);
+				magicSquare[currentRow][currentCol] = i;
+			} else if (nextRow >= 0 && nextCol == n){
+				currentRow -= 1;
+				currentCol = 0;
+				console.log(`cell is occupied, i = ${i}, currentRow = ${currentRow}, currentCol = ${currentCol} `);
+				magicSquare[currentRow][currentCol] = i;
+			}
+		}
+		i += 1;
+	}
+	return magicSquare;
 }
 
 function initializeMatrix(n){
