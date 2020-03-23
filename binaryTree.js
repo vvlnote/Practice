@@ -1,4 +1,4 @@
-let arr = [8,10,12,5,3,6];
+        let arr = [8,10,12,5,3,6];
 console.log(`array = ${arr}`);
 
 class BinarySearchTree {
@@ -13,7 +13,7 @@ class BinarySearchTree {
 			right: null
 		};
 		let currentNode;
-		if(this.root == null) {
+		if(this.root == null) {             
 			this.root = node;	
 		} else {
 			currentNode = this.root;
@@ -163,6 +163,10 @@ class BinarySearchTree {
 		}
 	}
 
+	displayLevelOrderRecursive() {
+		
+	}
+
 
 };
 
@@ -173,41 +177,49 @@ for (let i = 0; i < arr.length; i ++ ) {
 	bst.insertNode(arr[i]);
 }
 
-console.log('');
-console.log('');
-console.log(`========= Display Binary Tree in InOrder ======`);
-bst.displayInOrderRecursive();
+// console.log('');
+// console.log('');
+// console.log(`========= Display Binary Tree in InOrder ======`);
+// bst.displayInOrderRecursive();
 
 
 
-console.log('');
-console.log('');
-console.log(`========= Display Binary Tree in InOrder iteratively ======`);
-bst.displayInOrderIterative();
+// console.log('');
+// console.log('');
+// console.log(`========= Display Binary Tree in InOrder iteratively ======`);
+// bst.displayInOrderIterative();
+
+// console.log('');
+// console.log('');
+// console.log(`========= Display Binary Tree in PreOrder ======`);
+// bst.displayPreOrderRecursive();
+
+
+// console.log('');
+// console.log('');
+// console.log(`========= Display Binary Tree in PreOrder iteratively ======`);
+// bst.displayPreOrderIterative();
+
+// console.log('');
+// console.log('');
+
+
+// console.log(`========= Display Binary Tree in PostOrder ======`);
+// bst.displayPostOrderRecursive();
+
+// console.log('');
+// console.log('');
+
+// console.log(`========= Display Binary Tree in PostOrder iteratively with 2 stacks ======`);
+// bst.displayPostOrderIterative();
+
 
 console.log('');
 console.log('');
-console.log(`========= Display Binary Tree in PreOrder ======`);
-bst.displayPreOrderRecursive();
 
+// console.log(`========= Display Binary Tree in Level Order ======`);
+// bst.displayLevelOrderRecursive();
 
-console.log('');
-console.log('');
-console.log(`========= Display Binary Tree in PreOrder iteratively ======`);
-bst.displayPreOrderIterative();
-
-console.log('');
-console.log('');
-
-
-console.log(`========= Display Binary Tree in PostOrder ======`);
-bst.displayPostOrderRecursive();
-
-console.log('');
-console.log('');
-
-console.log(`========= Display Binary Tree in PostOrder iteratively with 2 stacks ======`);
-bst.displayPostOrderIterative();
 
 console.log('');
 console.log('');
