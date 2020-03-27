@@ -33,3 +33,35 @@ let warnForTamper = warnUser(`Hello!`);
 warnForTamper();
 warnForTamper();
 
+
+function clickMeNestedFun(msg) {
+    let count = 0;
+    function clickCount() {
+        console.log(`${msg} has been click ${count+1}`);
+    }
+    clickCount();
+}
+
+clickMeNestedFun(`clickMeNestedFun button`);
+clickMeNestedFun(`clickMeNestedFun button`);
+clickMeNestedFun(`clickMeNestedFun button`);
+
+function clickMeState(count){
+    let temp = count;
+    return function(){
+        temp += 1;
+        return temp;
+    }
+}
+
+function clickMeState_1(){
+    let count = 0;
+    return function(){
+        return ++count;
+    }
+}
+let clickState = clickMeState_1();
+clickState();
+clickState();
+clickState();
+console.log(`the total click count = ${clickState()}`);
