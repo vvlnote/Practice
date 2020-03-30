@@ -19,3 +19,20 @@ var getTargetCopy = function(original, cloned, target) {
     }
     return null;
 };
+
+
+var getTargetCopyRecursive = function(original, cloned, target) {
+    // use recursive
+   if (original === null) {
+       return null;
+   }
+   if (cloned.val === target.val) {
+       return cloned;
+   }
+    let left = getTargetCopyRecursive(original.left, cloned.left, target);
+    let right = getTargetCopyRecursive(original.right, cloned.right, target);
+    if (left) return left;
+    if (right) return right;
+   
+    return null;
+};
