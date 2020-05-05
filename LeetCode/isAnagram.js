@@ -1,24 +1,24 @@
 var isAnagram = function(s, t) {
-    let mapObj = {};
+
     if (s.length != t.length) return false;
     let sObj = {};
-    let tObj = {};
+    let size = 0;
     for (let i = 0; i < s.length; i ++) {
         if (sObj[s[i]] === undefined) {
             sObj[s[i]] = 1;
+            size += 1;
         } else {
             sObj[s[i]] += 1;
         }
-        // console.log(sObj);
-        if (tObj[t[i]] === undefined) {
-            tObj[t[i]] = 1;
-        } else {
-            tObj[t[i]] += 1;
-        }
-        // console.log(tObj);
     }
-    for (let [key, value] of Object.entries(sObj)) {
-        if (tObj[key] !== value) return false;
+    for (let i = 0; i < t.length; i++) {
+     if (sObj[t[i]] === undefined) return false;
+     sObj[t[i]] -= 1;
+     if (sObj[t[i]] === 0) {
+      delete sObj[t[i]];
+      size -= 1;
+     }
     }
+    if (size === 0) return true;
     return true;
 };
