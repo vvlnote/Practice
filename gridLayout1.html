@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+   .gridContainer > div {
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    background-color: rgb(41, 102, 145);
+    border: 2px solid rgb(79, 185, 227);
+   }
+   .gridContainer {
+    display: grid;
+    background-color: white;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+    border: none;
+    width: 50%;
+   }
+
+  </style>
+ </head>
+ <body>
+  <h1>Grid Layout One</h1>
+  <div class="gridContainer">
+  <div>One</div>
+  <div>Two</div>
+  <div>Three</div>
+  <div>Four</div>
+ </div>
+ </body>
+</html>
