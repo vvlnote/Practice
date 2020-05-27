@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+   .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px 100px;
+    gap: 10px;
+   }
+   .item1 {
+    background-color: rgb(184,188,191);
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row-start: 1;
+    grid-row-end: span 2;
+    border-radius: 10px;
+    border: 5px solid rgb(120, 123, 125);
+   }
+   .item2 {
+    background-color: rgb(250, 200, 213);
+    opacity: 0.6;
+    grid-column-start:2;
+    grid-column-end: span 2;
+    grid-row-start: 2;
+    grid-row-end: span 4;
+    border-radius: 10px;
+    border: 5px solid rgb(209, 130, 151);
+   }
+  </style>
+ </head>
+ <body>
+  <div class='grid'>
+   <div class='item1'>One</div>
+   <div class='item2'>Two</div>
+  </div>
+ </body>
+</html>
