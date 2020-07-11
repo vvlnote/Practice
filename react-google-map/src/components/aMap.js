@@ -1,20 +1,19 @@
-/*global google*/
+
 import React, {Component} from 'react';
 import {
  InfoWindow,
  withScriptjs,
  withGoogleMap,
  GoogleMap,
- Marker,
- DirectionsRenderer
+ Marker
 } from "react-google-maps";
 import Geocode from 'react-geocode';
 import AutoComplete from 'react-google-autocomplete';
-import car from '../car.png';
+// import car from '../car.png';
 import MapDirectionsRender from './mapDirectionsRender';
 
 
-Geocode.setApiKey("AIzaSyC4DTQPKGYmPVFgs0XQ74y7AD-zfrTdGiE");
+Geocode.setApiKey(`${process.env.REACT_APP_GOOGLE_API_KEY}`);
 Geocode.enableDebug();
 
 class AMap extends Component {
@@ -26,26 +25,18 @@ class AMap extends Component {
   zoom: 15,
   height: 400,
   mapPosition: {
-   // lat: -34.397,
-   // lng: 150.644,
+
    lat: 39.390897,
    lng: -99.066067,
   },
   markerPosition: {
-   // lat: -34.397,
-   // lng: 150.644,
+
    lat: 39.390897,
    lng: -99.066067,
   },
   markers: [],
   markerLocations: [],
-  directions: null
-
  }
-
- // getLocationAdd = (address) => {
- //  this.props.addNewDestination(address);
- // }
 
 
  onMarkerDragEnd = (event) => {
@@ -103,7 +94,7 @@ class AMap extends Component {
   array.push(<Marker 
                  key={array.length}
                  position={{lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng}} 
-                 icon={car}
+                //  icon={car}
              >
              </Marker>);
   // array.push({lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng});
@@ -116,38 +107,13 @@ class AMap extends Component {
 
   console.log('makers length: ', this.state.markers.length);
   this.props.addNewDestination(this.state.formattedAddress);
-  //make a route for the newly added marker
-  // if (this.state.markerLocations.length >= 2) {
-  //  const directionsService = new google.maps.DirectionsService();
-  //  let length = this.state.markerLocations.length;
-  //  const origin = this.state.markerLocations[length - 2];
-  //  const destination = this.state.markerLocations[length - 1];
-  //  console.log('origin: ', origin, ' destination: ', destination);
-
-  //  directionsService.route({
-  //   origin: origin,
-  //   destination: destination,
-  //   travelMode: google.maps.TravelMode.DRIVING
-  //  },
-  //  (results, status) => {
-  //   if (status === google.maps.DirectionsStatus.OK) {
-  //    this.setState({
-  //     ...this.state,
-  //     directions: results
-  //    });
-  //   } else {
-  //    // console.error(`error fetching dirctions ${results}`);
-
-  //   }
-  //  }
-  //  )
- 
-  // };
+  
  }
 
 
  
  render () {
+   
    let markerArray = this.state.markers;
    console.log('car markers: ', markerArray.length);
    
@@ -157,7 +123,7 @@ class AMap extends Component {
       defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
       // defaultCenter={{ lat: 0, lng: 0 }}
     >
-      {markerArray}
+      {/* {markerArray} */}
       <Marker
         draggable={true}
         onDragEnd={this.onMarkerDragEnd}
@@ -183,7 +149,7 @@ class AMap extends Component {
    <div>
    
    <MapWithAMarker
-    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4DTQPKGYmPVFgs0XQ74y7AD-zfrTdGiE&v=3.exp&libraries=geometry,drawing,places"
+    googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
     loadingElement={<div style={{ height: `100%` }} />}
     containerElement={<div style={{ height: `400px` }} />}
     mapElement={<div style={{ height: `100%`}} />}

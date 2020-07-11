@@ -1,27 +1,72 @@
-import React, {Component} from 'react';
-import Autocomplete from 'react-google-autocomplete';
+/*global google*/
+import React, { useState, useEffect, useRef } from 'react';
 
-class ADestination extends Component {
+function ADestination (props) {
+ const [duration, setDuration] = useState("");
+ const [distance, setDistance] = useState("");
+ const [err, setError] = useState({});
+ const [dragging, setDragging] = useState(false);
+ const dragItem = useRef();
+ const dragNode = useRef();
 
 
- render() {
-  console.log('in the ADestination: ', this.props.location, " ", this.props.key);
+ useEffect(() => {
+  if (props.index > 0) {
+   const distanceService = new google.maps.DistanceMatrixService();
+   distanceService.getDistanceMatrix({
+    origins: [props.from],
+    destinations: [props.location],
+    travelMode: google.maps.TravelMode.DRIVING,
+    unitSystem: google.maps.UnitSystem.METRIC,
+    avoidHighways: false,
+    avoidTolls: true
+   },
+   (result, status) => {
+    
+    if (status === google.maps.DistanceMatrixStatus.OK) {
+     console.log('result: ', result);
+     setDuration(result.rows[0].elements[0].duration.text);
+     setDistance(result.rows[0].elements[0].distance.text);
+    } else {
+     setError(result);
+    }
+  });
+ }});
 
-  return(
-   // <Autocomplete
-   //   apiKey={'AIzaSyC4DTQPKGYmPVFgs0XQ74y7AD-zfrTdGiE'}
-   //   style={{width:'50%', height:'40px', paddingLeft: 16, marginTop:16}}
-   //   onPlaceSelected={this.onPlaceSelected}
-   //   types={['(regions)']}
-   //   // componentRestriction={{country:'ru'}}
-   // />
+ const handleDragStart = (e, params) => {
+  console.log('drag starting...', params);
+  dragItem.current = params;
+  dragNode.current = e.target;
+  dragNode.current.addEventListener('dragend', handleDragEnd);
+  setDragging(true);
+ }
 
-   <div>
-   <label>Destination {this.props.index+1}:</label>
-   <p>{this.props.location}</p>
-   </div>
-  );
- };
+ const handleDragEnter = (e, params) => {
+  console.log('entering drag...', e.target);
+ }
+
+ const handleDragEnd = () => {
+  console.log('ending drag...');
+  // clean up
+  setDragging(false);
+  dragItem.current = null;
+  dragNode.current.removeEventListener('dragend', handleDragEnd);
+  dragNode.current = null;
+
+ }
+
+ let char = String.fromCharCode(props.index+65);
+ return(
+  <div 
+   draggable 
+   onDragStart={(e)=>{handleDragStart(e, {index: props.index})}}
+   onDragEnter={dragging? (e)=>{handleDragEnter(e, {index:props.index})}: null}
+  >
+ <label>Destination {char}:</label>
+ <p>address: {props.location}, distance: {distance}, driving time: {duration}</p>
+  </div>
+ )
 }
+
 
 export default ADestination;
